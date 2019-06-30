@@ -18,7 +18,7 @@
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
       <a href="#" class="navbar-brand d-flex align-items-center">        
-        <strong>Agenda for Humanity Visualization Endpoints</strong>
+        <strong>Agenda for Humanity Visualization API</strong>
       </a>
      
     </div>
@@ -27,7 +27,7 @@
 
 <main role="main" class="container">
  
-  <h3><br>Viz Endpoint</h3>
+  <h3><br>Visualization</h3>
   <div class="my-3 p-3 bg-white rounded shadow-sm">
   
     <div class="media text-muted pt-3">
@@ -82,14 +82,20 @@
    </div>
     
   </div>
-<h3>Dashboard Endpoint</h3>
+<h3>Dashboard</h3>
   <div class="my-3 p-3 bg-white rounded shadow-sm">
   
     <div class="media text-muted pt-3">
       
-      <p class="media-body pb-3 mb-0 small lh-125 border-gray">
+      <p class="media-body pb-3 mb-0 small border-bottom lh-125 border-gray">
         <strong class="d-block text-gray-dark">Reported</strong>
-        <a href="dashboard/get.php" target="_blank">https://www.agendaforhumanity.org/viz_endpoint/dashboard/get.php</a>
+        <a href="dashboard/reported.php" target="_blank">https://www.agendaforhumanity.org/viz_endpoint/dashboard/get.php</a>
+      </p>
+      </div>
+      <div class="media text-muted pt-3">
+      <p class="media-body pb-3 mb-0 small border-bottom lh-125 border-gray">
+        <strong class="d-block text-gray-dark">Not Reported</strong>
+        <a href="dashboard/notreported.php" target="_blank">https://www.agendaforhumanity.org/viz_endpoint/dashboard/get.php</a>
       </p>
     </div>
 

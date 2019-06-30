@@ -18,14 +18,23 @@ class Dashboard{
 
 
 
-   function read(){    
+   function readReported(){    
     
-  $query = "SELECT (SELECT COUNT(DISTINCT org_name) AS NotReported FROM `raw_ws_PACT_reports` WHERE(`raw_ws_PACT_reports`.report_status = 'Not Reported') AND(`raw_ws_PACT_reports`.org_name NOT LIKE '%test%') AND(`raw_ws_PACT_reports`.org_name NOT LIKE 'Z Demo%') AND (`raw_ws_PACT_reports`.org_name <> '')) AS NotReported,  COUNT(DISTINCT `raw_ws_PACT_reports`.org_name) AS Reported, `raw_ws_PACT_reports`.reporting_year AS ReportingYear FROM `raw_ws_PACT_reports` LEFT OUTER JOIN `ref_orgtype` ON `raw_ws_PACT_reports`.type_name = `ref_orgtype`.Type_Name WHERE(`raw_ws_PACT_reports`.report_status = 'Approved') AND(`raw_ws_PACT_reports`.org_name NOT LIKE '%test%') AND(`raw_ws_PACT_reports`.org_name NOT LIKE 'Z Demo%') AND (`raw_ws_PACT_reports`.org_name <> '') GROUP BY `raw_ws_PACT_reports`.reporting_year ";    
+  $query = "SELECT `raw_ws_PACT_reports`.reporting_year AS ReportingYear, COUNT(DISTINCT `raw_ws_PACT_reports`.org_name) AS Reported FROM `raw_ws_PACT_reports` LEFT OUTER JOIN `ref_orgtype` ON `raw_ws_PACT_reports`.type_name = `ref_orgtype`.Type_Name WHERE(`raw_ws_PACT_reports`.report_status = 'Approved') AND(`raw_ws_PACT_reports`.org_name NOT LIKE '%test%') AND(`raw_ws_PACT_reports`.org_name NOT LIKE 'Z Demo%') AND (`raw_ws_PACT_reports`.org_name <> '') GROUP BY `raw_ws_PACT_reports`.reporting_year";    
     $stmt = $this->conn->prepare($query);    
     $stmt->execute();
  
     return $stmt;
    }
+
+   function readNotReported(){    
+    
+    $query = "SELECT `raw_ws_PACT_reports`.reporting_year AS ReportingYear, COUNT(DISTINCT org_name) AS NotReported FROM `raw_ws_PACT_reports` WHERE (`raw_ws_PACT_reports`.report_status != 'Approved' AND `raw_ws_PACT_reports`.is_reported = 'Not Reported' AND `raw_ws_PACT_reports`.org_name NOT LIKE '%test%') GROUP BY `raw_ws_PACT_reports`.reporting_year;";    
+      $stmt = $this->conn->prepare($query);    
+      $stmt->execute();
+   
+      return $stmt;
+     }
 
 
 }
