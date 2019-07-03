@@ -29,7 +29,7 @@ class Dashboard{
 
    function readNotReported(){    
     
-    $query = "SELECT `raw_ws_PACT_reports`.reporting_year AS ReportingYear, COUNT(DISTINCT org_name) AS NotReported FROM `raw_ws_PACT_reports` WHERE (`raw_ws_PACT_reports`.report_status != 'Approved' AND `raw_ws_PACT_reports`.is_reported = 'Not Reported' AND `raw_ws_PACT_reports`.org_name NOT LIKE '%test%') GROUP BY `raw_ws_PACT_reports`.reporting_year;";    
+    $query = "SELECT `raw_ws_PACT_reports`.reporting_year AS ReportingYear, COUNT(DISTINCT org_name) AS NotReported FROM `raw_ws_PACT_reports` WHERE (`raw_ws_PACT_reports`.report_status NOT LIKE 'Approved' and org_name NOT LIKE 'z demo ngo' AND `raw_ws_PACT_reports`.org_name NOT LIKE '%test%') GROUP BY `raw_ws_PACT_reports`.reporting_year";    
       $stmt = $this->conn->prepare($query);    
       $stmt->execute();
    
